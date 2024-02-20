@@ -215,6 +215,15 @@ function install_pkgconfig {
 }
 
 
+function install_libssl {
+  _task "Checking for LibSSL-Dev"
+  if ! dpkg -s libssl-dev >/dev/null 2>&1; then
+      _task "Installing LibSSL-Dev"
+          _cmd "sudo apt-get install -y libssl-dev"
+  fi
+}
+
+
 function install_cmake {
   _task "Checking for CMake"
   if ! dpkg -s cmake >/dev/null 2>&1; then
@@ -258,6 +267,7 @@ main () {
   install_make
   install_cmake
   install_pkgconfig
+  install_libssl
   install_git
   install_rust
   install_python
