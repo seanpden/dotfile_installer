@@ -206,6 +206,15 @@ function install_make {
 }
 
 
+function install_cmake {
+  _task "Checking for CMake"
+  if ! dpkg -s make >/dev/null 2>&1; then
+      _task "Installing CMake"
+          _cmd "sudo apt-get install -y cmake"
+  fi
+}
+
+
 function install_lvim {
   _task "Checking for LVIM"
   if ! which lvim >/dev/null; then
@@ -238,6 +247,7 @@ function install_gnu_stow {
 main () {
   init
   install_make
+  install_dmake
   install_git
   install_rust
   install_python
