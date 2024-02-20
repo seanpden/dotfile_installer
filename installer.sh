@@ -208,7 +208,7 @@ function install_make {
 
 function install_cmake {
   _task "Checking for CMake"
-  if ! dpkg -s make >/dev/null 2>&1; then
+  if ! dpkg -s cmake >/dev/null 2>&1; then
       _task "Installing CMake"
           _cmd "sudo apt-get install -y cmake"
   fi
