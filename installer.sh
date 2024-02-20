@@ -247,7 +247,7 @@ function install_gnu_stow {
 main () {
   init
   install_make
-  install_dmake
+  install_cmake
   install_git
   install_rust
   install_python
