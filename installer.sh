@@ -206,6 +206,15 @@ function install_make {
 }
 
 
+function install_pkgconfig {
+  _task "Checking for Pkg-Config"
+  if ! dpkg -s pkg-config >/dev/null 2>&1; then
+      _task "Installing Pkg-Config"
+          _cmd "sudo apt-get install -y pkg-config"
+  fi
+}
+
+
 function install_cmake {
   _task "Checking for CMake"
   if ! dpkg -s cmake >/dev/null 2>&1; then
@@ -248,6 +257,7 @@ main () {
   init
   install_make
   install_cmake
+  install_pkgconfig
   install_git
   install_rust
   install_python
