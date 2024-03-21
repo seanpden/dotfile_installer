@@ -199,7 +199,7 @@ function install_dotfiles {
         # home/$USERNAME/.local/share/lunarvim/lvim/lua/lvim/core/alpha/dashboard.lua
         _task "Installing dotfiles"
         _cmd "git clone https://github.com/seanpden/dotfiles.git ~/dotfiles/"
-        _cmd "stow ~/dotfiles/."
+        _cmd "cd ~/dotfiles && stow ."
     fi
 }
 
