@@ -167,6 +167,11 @@ function install_nvm {
     if [ ! -d ~/.nvm/.git ]; then
         _task "Installing NVM"
         _cmd "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash"
+
+        echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc
+        echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> ~/.bashrc
+        echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion' >> ~/.bashrc
+
     fi
 }
 
@@ -183,8 +188,8 @@ function install_node {
 function install_lvim {
     _task "Checking for LVIM"
     if ! which lvim >/dev/null; then
-        _task "Installing LVIM"
-        _cmd "LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)"
+        # _task "Installing LVIM"
+        LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
     fi
 
 }
@@ -199,6 +204,23 @@ function install_dotfiles {
         # home/$USERNAME/.local/share/lunarvim/lvim/lua/lvim/core/alpha/dashboard.lua
         _task "Installing dotfiles"
         _cmd "git clone https://github.com/seanpden/dotfiles.git ~/dotfiles/"
+
+        _task "Backing up .bashrc"
+        _cmd "mv ~/.bashrc ~/.bashrc.bak"
+
+        _task "Backing up .config/lvim/config.lua"
+        _cmd "mv ~/.config/lvim/config.lua ~/.config/lvim/config.lua.bak"
+
+        _task "Backing up .config/lvim/lazy-lock.json"
+        _cmd "mv ~/.config/lvim/lazy-lock.json ~/.config/lvim/lazy-lock.json.bak"
+
+        _task "Backing up .config/neofetch/config.conf"
+        _cmd "mv ~/.config/neofetch/config.conf ~/.config/neofetch/config.conf.bak"
+
+        _task "Backing up .local/share/lunarvim/lvim/lua/lvim/core/alpha/dashboard.lua"
+        _cmd "mv ~/.local/share/lunarvim/lvim/lua/lvim/core/alpha/dashboard.lua ~/.local/share/lunarvim/lvim/lua/lvim/core/alpha/dashboard.lua.bak"
+
+        _task "Stow dotfiles"
         _cmd "cd ~/dotfiles && stow ."
     fi
 }
