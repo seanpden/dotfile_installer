@@ -1,0 +1,6 @@
+Starship,starship
+Bat,bat
+Eza,eza
+GitUI,gitui
+Zellij,zellij
+Nu,nu

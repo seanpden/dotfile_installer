@@ -1,0 +1,11 @@
+Git,git
+Python,python3
+Pip,python3-pip
+FD-Find,fd-find
+RipGrep,ripgrep
+neofetch,neofetch
+Make,make
+Pkg-Config,pkg-config
+LibSSL-Dev,libssl-dev
+CMake,cmake
+GNUStow,stow
